@@ -3,8 +3,8 @@ package co.edu.unbosque.model;
 public class Paciente {
 private  int CodigoUnico;
 private  String NombreApellidos;
-private int prioridad;
-private boolean Estado;
+private String Remitido;
+private String Donderemitido;
 private String Diagnostico;
 private String Genero;
 private String Fechadeingreso;
@@ -12,15 +12,16 @@ private String medicotratante;
 /**
  * Constructor de la clase Paciente que inicializa los atributos del paciente.
  */
-public Paciente(int codigo,String nombreape,boolean Estado,String diag,String gene,String fechaingreso,String medicotratante,int prio) {
+public Paciente(int codigo,String nombreape,String rem,String Donderemitido,String diag,String gene,String fechaingreso,String medicotratante) {
 	this.CodigoUnico=codigo;
 	this.NombreApellidos=nombreape;
-	this.Estado=Estado;
+	this.Remitido=rem;
+	this.Donderemitido=Donderemitido;
 	this.Diagnostico=diag;
 	this.Genero=gene;
 	this.Fechadeingreso=fechaingreso;
 	this.medicotratante=medicotratante;
-	this.prioridad=prio;
+	
 	
 }
 
@@ -41,21 +42,7 @@ public void setNombreApellidos(String nombreApellidos) {
 	NombreApellidos = nombreApellidos;
 }
 
-public int getPrioridad() {
-	return prioridad;
-}
 
-public void setPrioridad(int prioridad) {
-	this.prioridad = prioridad;
-}
-
-public boolean isEstado() {
-	return Estado;
-}
-
-public void setEstado(boolean estado) {
-	Estado = estado;
-}
 
 public String getDiagnostico() {
 	return Diagnostico;
@@ -89,13 +76,31 @@ public void setMedicotratante(String medicotratante) {
 	this.medicotratante = medicotratante;
 }
 
+public String getRemitido() {
+	return Remitido;
+}
+
+public void setRemitido(String remitido) {
+	Remitido = remitido;
+}
+
+public String getDonderemitido() {
+	return Donderemitido;
+}
+
+public void setDonderemitido(String donderemitido) {
+	Donderemitido = donderemitido;
+}
 /**
- * Devuelve una representación en cadena de texto de un objeto Student.
+ * Devuelve una representación en cadena de texto de un objeto Paciente.
  */
 public String toString() {
-	return "Paciente [CodigoUnico=" + CodigoUnico + ", NombreApellidos=" + NombreApellidos + ", prioridad=" + prioridad
-			+ ", Estado=" + Estado + ", Diagnostico=" + Diagnostico + ", Genero=" + Genero + ", Fechadeingreso="
-			+ Fechadeingreso + ", medicotratante=" + medicotratante + "]";
+	return "Paciente [CodigoUnico=" + CodigoUnico + ", NombreApellidos=" + NombreApellidos + ", Remitido=" + Remitido
+			+ ", Donderemitido=" + Donderemitido + ", Diagnostico=" + Diagnostico + ", Genero=" + Genero
+			+ ", Fechadeingreso=" + Fechadeingreso + ", medicotratante=" + medicotratante + "]";
 }
+
+
+
 
 }

@@ -18,24 +18,25 @@ private Lista lis;
 	public void Funcionar() {
 		
 		 
-			String menu=" 1. Agregar Estudiante\n 2. Ordenar Burbuja\n 3. Ordenar Seleccion\n 4. Salir.";
+			String menu=" 1. Agregar Estudiante\n 2. Ordenar Burbuja\n 3. Ordenar Seleccion\n 4. Salir.5. otro";
 			int option=0;
 			do {
 				option= vc.ReadInteger(menu);
 				switch (option) {
-				case 1:Insertarxcola();
+				case 1:eliminar();
 				break;
 				case 2: lis.mostrarLista();
 				break;
 				case 3:Insertarantes();
 				break;
-				case 4: vc.SeeInfo("See you soon");
+				case 4: Insertarxcabeza();
 				break;
+				case 5: consultar();
 				default:vc.SeeInfo("Incorrect option,please selected diferent option");
 
 				}
 
-			}while(option != 4);
+			}while(option != 6);
 
 		}
 		
@@ -49,50 +50,109 @@ private Lista lis;
 		
 		 String nombreapellido =vc.ReadString("ingrese nombre y apellido");
 		 int codigo=vc.ReadInteger("ingrese codigo");
-		 int prio=vc.ReadInteger("ingrese prioridad");
+		 String prio=vc.ReadString("Es remitido");
+		 if ("si".equals(prio)) {
+			 String donde=vc.ReadString("donde es remitido");
+			 String diag=vc.ReadString("Ingrese diagnostico");
+			 String gen=vc.ReadString("ingrese genero");
+			 String fechain=vc.ReadString("ingrese fecha de inicio");
+			 String medicontra=vc.ReadString("ingrese medico tratante");
+			 pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
+				lis.insertarxcabeza(pc);
+
+		 }else {
+			String  donde=null;
+			 
+		 
 		 String diag=vc.ReadString("Ingrese diagnostico");
 		 String gen=vc.ReadString("ingrese genero");
 		 String fechain=vc.ReadString("ingrese fecha de inicio");
 		 String medicontra=vc.ReadString("ingrese medico tratante");
 		
-		pc=new Paciente(codigo,nombreapellido,true,diag,gen,fechain,medicontra,prio);
+		pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
 		lis.insertarxcabeza(pc);
 
-		
+	}
 	}
 	
 	public void Insertarxcola() {
 		
+		
 		 String nombreapellido =vc.ReadString("ingrese nombre y apellido");
 		 int codigo=vc.ReadInteger("ingrese codigo");
-		 int prio=vc.ReadInteger("ingrese prioridad");
+		 String prio=vc.ReadString("Es remitido");
+		 if ("si".equals(prio)) {
+			 String donde=vc.ReadString("donde es remitido");
+			 String diag=vc.ReadString("Ingrese diagnostico");
+			 String gen=vc.ReadString("ingrese genero");
+			 String fechain=vc.ReadString("ingrese fecha de inicio");
+			 String medicontra=vc.ReadString("ingrese medico tratante");
+			 pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
+				lis.insertarxcabeza(pc);
+
+		 }else {
+			String  donde=null;
+			 
+		 
 		 String diag=vc.ReadString("Ingrese diagnostico");
 		 String gen=vc.ReadString("ingrese genero");
 		 String fechain=vc.ReadString("ingrese fecha de inicio");
 		 String medicontra=vc.ReadString("ingrese medico tratante");
 		
-		pc=new Paciente(codigo,nombreapellido,true,diag,gen,fechain,medicontra,prio);
+		pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
 		lis.insertarxcola(pc);
 
-		
+		 }
 	}
 	
 	
 	public void Insertarantes() {
 		
+		
 		 String nombreapellido =vc.ReadString("ingrese nombre y apellido");
 		 int codigo=vc.ReadInteger("ingrese codigo");
-		 int prio=vc.ReadInteger("ingrese prioridad");
+		 String prio=vc.ReadString("Es remitido");
+		 if ("si".equals(prio)) {
+			 String donde=vc.ReadString("donde es remitido");
+			 String diag=vc.ReadString("Ingrese diagnostico");
+			 String gen=vc.ReadString("ingrese genero");
+			 String fechain=vc.ReadString("ingrese fecha de inicio");
+			 String medicontra=vc.ReadString("ingrese medico tratante");
+			 pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
+			 int codigoaux=vc.ReadInteger("ingrese codigo de donde quiere ingresar antes");
+			
+		
+			lis.insertarAntescod(codigoaux, pc);
+			 
+		 }else {
+			String  donde=null;
+			 
+		 
 		 String diag=vc.ReadString("Ingrese diagnostico");
 		 String gen=vc.ReadString("ingrese genero");
 		 String fechain=vc.ReadString("ingrese fecha de inicio");
 		 String medicontra=vc.ReadString("ingrese medico tratante");
+		 
+		
+		pc=new Paciente(codigo,nombreapellido,prio,donde,diag,gen,fechain,medicontra);
 		 int codigoaux=vc.ReadInteger("ingrese codigo de donde quiere ingresar antes");
 		
-		pc=new Paciente(codigo,nombreapellido,true,diag,gen,fechain,medicontra,prio);
-		lis.insertarAntesDeCodigo(codigoaux, pc);
+	
+		lis.insertarAntescod(codigoaux, pc);
 
-		
+		 }
 	}
 	
+	
+	public void eliminar() {
+		
+		int cod= vc.ReadInteger("ingrese el numero del paciente que desea eliminar");
+		lis.eliminarporcodigo(cod, pc);
+	}
+	public void consultar() {
+		
+		int cod=vc.ReadInteger("ingrese codigo a buscar");
+		
+		lis.buscar(cod, pc);
+	}
 }

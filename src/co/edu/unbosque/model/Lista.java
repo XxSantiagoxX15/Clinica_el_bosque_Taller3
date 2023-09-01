@@ -45,7 +45,7 @@ public class Lista {
  }
 	    
 	    
-	    public Lista insertarDespuesDeCodigo(int codigo, Paciente x) {
+	    public Lista insertarDespcod(int codigo, Paciente x) {
 	        Node nuevo = new Node(x);  
 	        
 	        if (cabeza == null) {
@@ -70,8 +70,8 @@ public class Lista {
 	    
 	    
 	    
-	    public Lista insertarAntesDeCodigo(int codigo, Paciente nuevoPaciente) {
-	        Node nuevo = new Node(nuevoPaciente);  
+	    public Lista insertarAntescod(int codigo, Paciente x) {
+	        Node nuevo = new Node(x);  
 	        if (cabeza == null) {
 	            cabeza = nuevo; 
 	        }
@@ -96,62 +96,37 @@ public class Lista {
 	        
 	        return this;
 	    }
-	    public void eliminar(Paciente x){
-	         
-	        Node anterior,actual;
-	        boolean find=false;
-	        actual=cabeza;
-	        anterior=null;
-	        while(actual!=null && !find)
-	        {
-	            find=actual.dato==x;
-	            if(actual.dato==x)
-	            {
-	                anterior=actual;
-	                actual=actual.siguiente;
-	            }
-	        }
-	        if(actual!=null){
-	            if(actual!=cabeza)
-	                cabeza=actual.siguiente;
-	            else{
-	                anterior.siguiente=actual.siguiente;
-	            }
-	        }
-	    }
+	
 	    
-	    public Node buscar (Paciente x) {
+	    public Node buscar (int cod,Paciente x) {
 	     for(Node indice= cabeza; indice!=null;indice=indice.siguiente) {
-	    	 if(x==indice.dato) {
-	    		return indice;
+	    	 if(cod==indice.dato.getCodigoUnico()) {
+	    		
+	    		 System.out.println(indice.dato.toString());
+	    		 return indice;
+	    		
 	    	 }
 	     }
 		return null;
 	  }	  
 	    
-	    public  void eliminarporpos(int x,Paciente f) {
-	    	Node anterior,actual;
-	    	boolean find= false;
-	    	int pos=0;
-	    	actual=cabeza;
-	    	anterior=null;
-	    	while(actual!=null && !find) {
-	    		pos++;
-	    		find=actual.dato==f;
-	    		if(pos==x) {
-	    			anterior=actual;
-	    			actual=actual.siguiente;
-	    		}
-	    		
-	    	}
-	    	if(actual!=null) {
-	    		if(actual!=cabeza) 
-	    			cabeza=actual.siguiente;
-	    			else{
-	    				anterior.siguiente=actual.siguiente;
-	    		}
-	    	}
-	   
+	    public void eliminarporcodigo(int cod,Paciente x) {
+	        Node anterior = null;
+	        Node actual = cabeza;
+
+	        while (actual != null) {
+	            if (actual.dato.getCodigoUnico() == cod) {
+	                if (anterior == null) {
+	                   
+	                    cabeza = actual.siguiente;
+	                } else {
+	                    anterior.siguiente = actual.siguiente;
+	                }
+	                return; 
+	            }
+	            anterior = actual;
+	            actual = actual.siguiente;
+	        }
 	    }
 	    public void mostrarLista() {
 	        Node actual = cabeza;
@@ -161,6 +136,8 @@ public class Lista {
 	            actual = actual.siguiente;
 	        }
 	    }
+	    
+	    
 }
 
 	    
